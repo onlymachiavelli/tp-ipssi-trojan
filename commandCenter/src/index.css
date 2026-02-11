@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 92%;
+
+    --card: 222 44% 9%;
+    --card-foreground: 210 40% 92%;
+
+    --popover: 222 44% 9%;
+    --popover-foreground: 210 40% 92%;
+
+    --primary: 192 95% 55%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 260 60% 50%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 192 80% 40%;
+    --accent-foreground: 210 40% 95%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 192 95% 55%;
+
+    --radius: 0.5rem;
+
+    --glow-primary: 0 0 20px hsl(192 95% 55% / 0.3);
+    --glow-secondary: 0 0 20px hsl(260 60% 50% / 0.3);
+    --glow-success: 0 0 15px hsl(150 80% 45% / 0.3);
+    --glow-warning: 0 0 15px hsl(40 90% 55% / 0.3);
+
+    --success: 150 80% 45%;
+    --warning: 40 90% 55%;
+
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 210 40% 92%;
+    --sidebar-primary: 192 95% 55%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent-foreground: 210 40% 92%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 192 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Orbitron', sans-serif;
+  }
+  .font-mono-space {
+    font-family: 'Space Mono', monospace;
+  }
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+  .glow-secondary {
+    box-shadow: var(--glow-secondary);
+  }
+  .glow-success {
+    box-shadow: var(--glow-success);
+  }
+  .border-glow {
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: inset 0 0 30px hsl(var(--primary) / 0.05), var(--glow-primary);
+  }
+}
+
+/* Starfield background */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1px 1px at 10% 20%, hsl(192 95% 80% / 0.6), transparent),
+    radial-gradient(1px 1px at 30% 65%, hsl(260 60% 80% / 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 50% 10%, hsl(192 95% 90% / 0.8), transparent),
+    radial-gradient(1px 1px at 70% 40%, hsl(210 80% 80% / 0.5), transparent),
+    radial-gradient(1px 1px at 90% 80%, hsl(192 95% 70% / 0.3), transparent),
+    radial-gradient(1.5px 1.5px at 15% 85%, hsl(260 60% 90% / 0.6), transparent),
+    radial-gradient(1px 1px at 45% 50%, hsl(192 95% 80% / 0.4), transparent),
+    radial-gradient(1px 1px at 80% 15%, hsl(210 80% 90% / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 60% 75%, hsl(192 95% 85% / 0.3), transparent),
+    radial-gradient(1px 1px at 25% 35%, hsl(260 60% 85% / 0.5), transparent),
+    radial-gradient(1px 1px at 85% 55%, hsl(192 95% 75% / 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 5% 50%, hsl(210 80% 85% / 0.6), transparent);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}

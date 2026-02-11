@@ -44,6 +44,7 @@ def collect_data():
 
 
 @victims_bp.get("")
+
 def get_all_victims_with_files():
     victims = list_victims_with_files()
     return jsonify(

@@ -83,17 +83,8 @@ if __name__ == "__main__":
     listOfFiles = getListOfFiles(currentDir)
 
     fileContent = []
-    """
-    file content should be like this : 
-
-     { "name": "a.txt", "path": "C:/tmp/a.txt", "content": "hello" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" }
-
     
-    """
+    
     for file in listOfFiles:
         data = readFile(file)
         print(f"Data from {file}:\n{data}\n")

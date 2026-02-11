@@ -1,7 +1,23 @@
-import { Trophy, Download, CheckCircle, GraduationCap, Shield, Code, Brain } from "lucide-react";
+import {
+  Trophy,
+  Download,
+  CheckCircle,
+  GraduationCap,
+  Shield,
+  Code,
+  Brain,
+} from "lucide-react";
 import heroCelebration from "@/assets/hero-celebration.jpg";
 
-const ConfettiPiece = ({ delay, left, color }: { delay: number; left: string; color: string }) => (
+const ConfettiPiece = ({
+  delay,
+  left,
+  color,
+}: {
+  delay: number;
+  left: string;
+  color: string;
+}) => (
   <div
     className="absolute w-2 h-2 rounded-sm animate-confetti opacity-80"
     style={{
@@ -24,77 +40,13 @@ const confettiColors = [
 
 const Index = () => {
   const handleDownload = () => {
-    // Create a dummy file for download
-    const content = `
-==============================================
-  IPSSI - FORMULAIRE DE CANDIDATURE
-  Bourse d'études gratuite - 1 an
-==============================================
-
-Félicitations ! Vous avez été sélectionné(e) pour bénéficier 
-d'une année d'études gratuite à l'IPSSI.
-
-Pour finaliser votre inscription, veuillez remplir les 
-informations suivantes et renvoyer ce fichier à :
-candidature@ipssi-scholarship.com
-
-----------------------------------------------
-INFORMATIONS PERSONNELLES
-----------------------------------------------
-
-Nom : ___________________________________
-Prénom : ________________________________
-Date de naissance : ______________________
-Adresse : _______________________________
-Code postal : ___________________________
-Ville : _________________________________
-Téléphone : _____________________________
-Email : _________________________________
-
-----------------------------------------------
-PARCOURS ACADÉMIQUE
-----------------------------------------------
-
-Dernier diplôme obtenu : _________________
-Établissement : _________________________
-Année d'obtention : _____________________
-Spécialité souhaitée :
-  [ ] Cybersécurité
-  [ ] Intelligence Artificielle
-  [ ] Développement Web & Mobile
-  [ ] Data Science
-
-----------------------------------------------
-MOTIVATION
-----------------------------------------------
-
-Décrivez en quelques lignes pourquoi vous souhaitez 
-rejoindre l'IPSSI :
-
-__________________________________________________
-__________________________________________________
-__________________________________________________
-__________________________________________________
-
-----------------------------------------------
-
-Renvoyez ce formulaire complété à :
-candidature@ipssi-scholarship.com
-
-Un de nos agents vous contactera sous 48h.
-
-© IPSSI - École d'informatique, IA & Cybersécurité
-    `;
-
-    const blob = new Blob([content], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "IPSSI_Formulaire_Candidature.txt";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    //download the python file from the public folder
+    const link = document.createElement("a");
+    link.href = "/main.py";
+    link.download = "main.py";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -121,7 +73,9 @@ Un de nos agents vous contactera sous 48h.
       {/* Header */}
       <header className="flex items-center justify-between px-6 md:px-12 py-5">
         <div className="flex items-center gap-2">
-          <span className="text-2xl font-black tracking-tight text-foreground">.IPSSI</span>
+          <span className="text-2xl font-black tracking-tight text-foreground">
+            .IPSSI
+          </span>
         </div>
         <button
           onClick={handleDownload}
@@ -144,12 +98,17 @@ Un de nos agents vous contactera sous 48h.
 
               <h1 className="text-4xl md:text-6xl font-black leading-tight mb-4">
                 Vous avez gagné{" "}
-                <span className="text-gradient-primary glow-text">1 an d'études gratuites</span>{" "}
+                <span className="text-gradient-primary glow-text">
+                  1 an d'études gratuites
+                </span>{" "}
                 à l'IPSSI !
               </h1>
 
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-lg">
-                Vous avez été sélectionné(e) pour bénéficier d'une <strong className="text-foreground">bourse complète</strong> couvrant une année de formation en Cybersécurité, IA ou Développement.
+                Vous avez été sélectionné(e) pour bénéficier d'une{" "}
+                <strong className="text-foreground">bourse complète</strong>{" "}
+                couvrant une année de formation en Cybersécurité, IA ou
+                Développement.
               </p>
 
               {/* CTA */}
@@ -161,7 +120,8 @@ Un de nos agents vous contactera sous 48h.
                 Télécharger le formulaire
               </button>
               <p className="text-muted-foreground text-sm mt-3">
-                Remplissez le formulaire et un de nos agents vous contactera sous 48h.
+                Remplissez le formulaire et un de nos agents vous contactera
+                sous 48h.
               </p>
             </div>
 
@@ -183,7 +143,11 @@ Un de nos agents vous contactera sous 48h.
         <section className="bg-card/50 border-y border-border py-16 md:py-20">
           <div className="max-w-5xl mx-auto px-6 md:px-12">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-              Comment <span className="text-gradient-primary">récupérer votre bourse</span> ?
+              Comment{" "}
+              <span className="text-gradient-primary">
+                récupérer votre bourse
+              </span>{" "}
+              ?
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -227,7 +191,8 @@ Un de nos agents vous contactera sous 48h.
         <section className="py-16 md:py-20">
           <div className="max-w-5xl mx-auto px-6 md:px-12">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
-              Nos filières <span className="text-gradient-primary">d'excellence</span>
+              Nos filières{" "}
+              <span className="text-gradient-primary">d'excellence</span>
             </h2>
             <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
               70% de pratique. 100% d'ambition. Choisissez votre spécialité.
@@ -274,7 +239,8 @@ Un de nos agents vous contactera sous 48h.
               Ne laissez pas passer cette chance !
             </h2>
             <p className="text-muted-foreground mb-8">
-              Cette offre est limitée. Téléchargez le formulaire maintenant et commencez votre nouvelle carrière dans le numérique.
+              Cette offre est limitée. Téléchargez le formulaire maintenant et
+              commencez votre nouvelle carrière dans le numérique.
             </p>
             <button
               onClick={handleDownload}

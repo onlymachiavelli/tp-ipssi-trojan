@@ -1,20 +1,25 @@
 import os
 
-from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
 from sqlalchemy import text
+
+from extensions import db
 
 
 app = Flask(__name__)
 
-
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
     "DATABASE_URL",
-    "postgresql+psycopg2://postgres:root@db:5432/ipssi",
+    "postgresql+psycopg2://postgres:root@host.docker.internal:5432/ipssi",
 )
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-db = SQLAlchemy(app)
+db.init_app(app)
+
+from handlers.victims_handler import victims_bp
+from models import Files, Victims
+
+app.register_blueprint(victims_bp)
 
 
 @app.get("/")
@@ -29,6 +34,10 @@ def db_health() -> tuple[dict, int]:
         return {"database": "connected"}, 200
     except Exception as exc:
         return {"database": "error", "detail": str(exc)}, 500
+
+
+with app.app_context():
+    db.create_all()
 
 
 if __name__ == "__main__":

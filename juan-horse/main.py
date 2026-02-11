@@ -1,48 +1,43 @@
-# import os 
+import os
+import re
 
 
+MAC_REGEX = re.compile(r"([0-9A-Fa-f]{2}(?:[-:][0-9A-Fa-f]{2}){5})")
 
-# def getNetworkIpWindows():
-#     data = os.popen("ipconfig").read()
 
-#     #split and get the line with IPv4
-#     data = data.split("\n")
-#     for line in data:        
-#         if "IPv4" in line:
-#             data = line.split(":")[1].strip()
+def getNetworkIpWindows():
+    output = os.popen("ipconfig").read()
+
+    for line in output.splitlines():
+        if "IPv4" in line:
+            return line.split(":", 1)[1].strip()
+
+    return ""
+
+
+def getComputerNameWindows():
+    data = os.popen("hostname").read()
+    return data.strip()
+
+
+def getAnyMacAddressWindows():
+    output = os.popen("getmac").read()
+    for line in output.splitlines():
+        match = MAC_REGEX.search(line)
+        if match:
+            return match.group(1)
+
+    return ""
+
+
+def computerHostData():
+    return {
+        "ip": getNetworkIpWindows(),
+        "computer_name": getComputerNameWindows(),
+        "mac_address": getAnyMacAddressWindows()
+    }
+
+
+if __name__ == "__main__":
     
-
-    
-#     return data
-
-
-# def getMacAddressWindows():
-#     data = os.popen("getmac").read()
-    
-#     #split and get the line with the mac address
-#     data = data.split("\n")
-    
-
-      
-    
-#     for line in data:        
-#         if "Media disconnected" not in line and "Physical Address" not in line and "===" not in line and line.strip() != "":
-#             data = line.split()[0].strip()
-#             break
-            
-#     return data.
-
-
-
-
-
-
-
-
-# if __name__ == "__main__":
-
-    
-#     print("IP Address:")
-#     print(getNetworkIpWindows())
-#     print("MAC Address:")
-#     print(getMacAddressWindows())
+    print(computerHostData())
